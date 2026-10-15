@@ -11,14 +11,12 @@
 <style>
 :root{--bg:#e5e5e5;--fg:#111;--mute:#6b6b6b;--line:#6f6f6f;--font:Inter,"Helvetica Neue",Helvetica,Arial,sans-serif}
 [data-scheme=dark]{--bg:#0c0c0c;--fg:#f2f2f2;--mute:#8a8a8a;--line:#5a5a5a}
-[data-mono]{--font:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
 *{box-sizing:border-box}
 html,body{height:100%;margin:0;overflow:hidden}
 body{background:var(--bg);color:var(--fg);font:600 13px/18px var(--font);transition:background .5s,color .5s;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 #gl{position:fixed;inset:0;width:100%;height:100%;image-rendering:pixelated;transition:opacity .9s}
 body.inner #gl{opacity:.22}
-.frame{position:fixed;inset:36px;border:1px solid var(--line);pointer-events:none;transition:border-color .5s}
 
 #splash{position:fixed;inset:0;z-index:20;background:var(--bg);display:flex;align-items:center;justify-content:center;font:200 22px var(--font);color:var(--mute);transition:opacity .9s .5s,visibility 0s 1.4s}
 #splash.done{opacity:0;visibility:hidden}
@@ -38,10 +36,6 @@ nav a::before{content:"";position:absolute;left:0;top:50%;width:7px;height:7px;m
 nav a.on{color:transparent}nav a.on::before{transform:scale(1)}
 nav a:not(.on):hover{opacity:.55}
 
-.themes{position:fixed;left:19px;bottom:36px;z-index:5;display:flex;flex-direction:column-reverse;gap:16px}
-.themes button{all:unset;cursor:pointer;writing-mode:vertical-rl;transform:rotate(180deg);font:400 11px/1 var(--font);letter-spacing:.02em;text-transform:uppercase;display:flex;align-items:center;gap:6px;color:var(--fg)}
-.themes button::before{content:"";width:9px;height:9px;border:1px solid currentColor}
-.themes button.on::before{background:currentColor}
 .copy{position:fixed;left:36px;bottom:10px;font-size:10px;color:var(--mute);z-index:5}
 
 /* pages */
@@ -111,13 +105,10 @@ pre{font:400 11px/16px ui-monospace,Menlo,monospace;color:var(--mute);overflow-x
 .back{display:inline-block;margin-bottom:6px;font-size:12px}
 
 @media (max-width:820px){
-  .frame{inset:12px}
   header{left:28px;top:30px}.name{font-size:36px}nav{margin-top:18px;display:flex;gap:16px}nav a{line-height:22px}
   nav a::before{left:50%;margin-left:-3px}
   .page{left:28px;right:28px;top:170px;bottom:56px}
   #home{left:28px;right:28px;width:auto;bottom:56px}
-  .themes{left:12px;bottom:12px;flex-direction:row-reverse;gap:14px;background:var(--bg)}
-  .themes button{writing-mode:horizontal-tb;transform:none}
   .copy{display:none}
   .item,.grp,.detail h1,.detail .meta,.big a{text-align:left}.big a{justify-content:flex-start}.list{align-items:flex-start;padding-top:10px}.col,.detail{padding-top:10px;margin-left:0}.big{padding-top:10px}
   .dev{width:150px}.intro{flex-direction:column}.intro .hero .dev{width:200px}.grid{grid-template-columns:repeat(2,1fr)}
@@ -127,7 +118,6 @@ pre{font:400 11px/16px ui-monospace,Menlo,monospace;color:var(--mute);overflow-x
 </head>
 <body>
 <canvas id="gl" aria-hidden="true"></canvas>
-<div class="frame"></div>
 <div id="splash">Justin Mosley <b>Portfolio</b></div>
 
 <header>
@@ -141,12 +131,8 @@ pre{font:400 11px/16px ui-monospace,Menlo,monospace;color:var(--mute);overflow-x
   </nav>
 </header>
 
-<div class="themes" id="themes">
-  <button data-t="light">Light</button><button data-t="dark">Dark</button><button data-t="mono">Monospaced</button>
-</div>
-
 <div class="page" id="home"><div class="t">
-  <span class="ln">I build full-stack apps</span><span class="ln">and the infrastructure</span><span class="ln">they run on.</span>
+  <span class="ln">I build and modernize</span><span class="ln">full-stack applications.</span>
   <span class="ln">&nbsp;</span>
 </div></div>
 
@@ -287,9 +273,8 @@ push to main ─► CI ─► Docker deploy to a cloud VM  (staging ahead of pro
 
 <div class="page" id="info"><div class="col">
   <h1 class="ln">Info</h1>
-  <p class="ln">I'm a full-stack .NET and React developer who likes building systems end to end: the app, the API, the deploy pipeline and the box it runs on.</p>
+  <p class="ln">I'm a full-stack .NET and React developer with 5+ years of professional experience building and modernizing enterprise web applications, from reporting and client portals to warehouse and logistics systems.</p>
   <p class="ln">My personal passion project is GameCorner / KUA Bot, a Discord bot and mobile web app that share one database and one economy. It's where I've practiced shared-state correctness, contract testing, and shipping through staging to production.</p>
-  <p class="ln">I have 5+ years of professional experience building and modernizing enterprise web applications, from reporting and client portals to warehouse and logistics systems.</p>
   <h3 class="ln">Skills</h3>
   <dl class="skills ln">
     <dt>Languages</dt><dd>C#, VB.NET, TypeScript, JavaScript, SQL / T-SQL, Python</dd>
@@ -348,17 +333,10 @@ const lb=$('#lb');
 document.addEventListener('click',e=>{const t=e.target.closest('.thumbs button');if(t){lb.querySelector('img').src=t.dataset.full;lb.showModal()}});
 lb.addEventListener('click',()=>lb.close());
 
-/* theme: follows the system by default; the toggle overrides; Monospaced swaps the font */
-let scheme=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light',mono=false;
-try{const s=JSON.parse(localStorage.getItem('theme')||'null');if(s){scheme=s.scheme;mono=s.mono}}catch(e){}
-function paint(){
-  document.documentElement.dataset.scheme=scheme;
-  document.documentElement.toggleAttribute('data-mono',mono);
-  $$('#themes button').forEach(b=>b.classList.toggle('on',b.dataset.t==='mono'?mono:(!mono&&b.dataset.t===scheme)));
-  try{localStorage.setItem('theme',JSON.stringify({scheme,mono}))}catch(e){}
-}
-$$('#themes button').forEach(b=>b.onclick=()=>{const t=b.dataset.t;if(t==='mono')mono=true;else{mono=false;scheme=t}paint()});
-paint();
+/* theme: follows the system */
+const dm=matchMedia('(prefers-color-scheme:dark)');let scheme;
+function paint(){scheme=dm.matches?'dark':'light';document.documentElement.dataset.scheme=scheme}
+dm.addEventListener('change',paint);paint();
 
 /* background: flowing noise field behind a hard circular limb, 1px dither (original shader) */
 const cv=$('#gl'),gl=cv.getContext('webgl',{antialias:false});
