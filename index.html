@@ -6,7 +6,8 @@
 <title>Justin Mosley — Portfolio</title>
 <meta name="description" content="Justin Mosley, software developer. Featured: GameCorner / KUA Bot, a Discord bot and mobile web app sharing one economy.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600&display=swap" rel="stylesheet"></noscript>
 <style>
 :root{--bg:#e5e5e5;--fg:#111;--mute:#6b6b6b;--line:#6f6f6f;--font:Inter,"Helvetica Neue",Helvetica,Arial,sans-serif}
 [data-scheme=dark]{--bg:#0c0c0c;--fg:#f2f2f2;--mute:#8a8a8a;--line:#5a5a5a}
@@ -21,6 +22,8 @@ body.inner #gl{opacity:.22}
 
 #splash{position:fixed;inset:0;z-index:20;background:var(--bg);display:flex;align-items:center;justify-content:center;font:200 22px var(--font);color:var(--mute);transition:opacity .9s .5s,visibility 0s 1.4s}
 #splash.done{opacity:0;visibility:hidden}
+@keyframes splash-out{to{opacity:0;visibility:hidden}}
+#splash{animation:splash-out .9s 6s forwards}
 #splash b{font-weight:200;color:var(--fg);margin-left:.5em}
 
 header{position:fixed;left:72px;top:60px;z-index:5}
@@ -189,7 +192,7 @@ SQL Server  ◄───────── T-SQL stored procedures, tuned for li
   <div class="meta ln">Python / Vue / Discord + Web</div>
 
   <div class="intro ln">
-    <figure class="hero"><div class="dev"><video src="media/tour.webm" muted loop playsinline preload="metadata"></video></div><figcaption>40-second tour</figcaption></figure>
+    <figure class="hero"><div class="dev"><video src="media/tour.webm" muted loop playsinline preload="none"></video></div><figcaption>40-second tour</figcaption></figure>
     <div>
       <p>A Discord bot and an installable mobile web app that share one database and one economy. A play-money casino, a trading card game, auctions and a sportsbook. Play on Discord or on your phone with a single balance and collection.</p>
       <p>It runs for a private Discord community, so most people will never get to play it. Everything on this page was recorded from the real app.</p>
@@ -198,7 +201,7 @@ SQL Server  ◄───────── T-SQL stored procedures, tuned for li
 
   <h2 class="sec ln">In motion</h2>
   <div class="grid ln">
-    <figure><div class="dev"><video src="media/packs.webm" muted loop playsinline preload="metadata"></video></div><figcaption>Pack opening</figcaption></figure><figure><div class="dev"><video src="media/slots.webm" muted loop playsinline preload="metadata"></video></div><figcaption>Slots</figcaption></figure><figure><div class="dev"><video src="media/crash.webm" muted loop playsinline preload="metadata"></video></div><figcaption>Crash</figcaption></figure><figure><div class="dev"><video src="media/poker.webm" muted loop playsinline preload="metadata"></video></div><figcaption>Poker vs. Mr. House</figcaption></figure><figure><div class="dev"><video src="media/blackjack.webm" muted loop playsinline preload="metadata"></video></div><figcaption>Blackjack</figcaption></figure><figure><div class="dev"><video src="media/mines.webm" muted loop playsinline preload="metadata"></video></div><figcaption>Mines</figcaption></figure><figure><div class="dev"><video src="media/auctions.webm" muted loop playsinline preload="metadata"></video></div><figcaption>Auctions</figcaption></figure><figure><div class="dev"><video src="media/grading.webm" muted loop playsinline preload="metadata"></video></div><figcaption>Grading reveal</figcaption></figure><figure><div class="dev"><video src="media/slab.webm" muted loop playsinline preload="metadata"></video></div><figcaption>Graded slab</figcaption></figure><figure><div class="dev"><video src="media/binder.webm" muted loop playsinline preload="metadata"></video></div><figcaption>Collection</figcaption></figure><figure><div class="dev"><video src="media/lobby.webm" muted loop playsinline preload="metadata"></video></div><figcaption>Lobby</figcaption></figure>
+    <figure><div class="dev"><video src="media/packs.webm" muted loop playsinline preload="none"></video></div><figcaption>Pack opening</figcaption></figure><figure><div class="dev"><video src="media/slots.webm" muted loop playsinline preload="none"></video></div><figcaption>Slots</figcaption></figure><figure><div class="dev"><video src="media/crash.webm" muted loop playsinline preload="none"></video></div><figcaption>Crash</figcaption></figure><figure><div class="dev"><video src="media/poker.webm" muted loop playsinline preload="none"></video></div><figcaption>Poker vs. Mr. House</figcaption></figure><figure><div class="dev"><video src="media/blackjack.webm" muted loop playsinline preload="none"></video></div><figcaption>Blackjack</figcaption></figure><figure><div class="dev"><video src="media/mines.webm" muted loop playsinline preload="none"></video></div><figcaption>Mines</figcaption></figure><figure><div class="dev"><video src="media/auctions.webm" muted loop playsinline preload="none"></video></div><figcaption>Auctions</figcaption></figure><figure><div class="dev"><video src="media/grading.webm" muted loop playsinline preload="none"></video></div><figcaption>Grading reveal</figcaption></figure><figure><div class="dev"><video src="media/slab.webm" muted loop playsinline preload="none"></video></div><figcaption>Graded slab</figcaption></figure><figure><div class="dev"><video src="media/binder.webm" muted loop playsinline preload="none"></video></div><figcaption>Collection</figcaption></figure><figure><div class="dev"><video src="media/lobby.webm" muted loop playsinline preload="none"></video></div><figcaption>Lobby</figcaption></figure>
   </div>
 
   <h2 class="sec ln">Screens</h2>
@@ -308,7 +311,8 @@ push to main ─► CI ─► Docker deploy to a cloud VM  (staging ahead of pro
 <script>
 const $=s=>document.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
 const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
-addEventListener('load',()=>setTimeout(()=>$('#splash').classList.add('done'),reduce?0:900));
+/* splash clears once fonts are ready (or after 2.5s), not on window load: load also waits on videos and third-party scripts */
+Promise.race([document.fonts?document.fonts.ready:0,new Promise(r=>setTimeout(r,2500))]).then(()=>setTimeout(()=>$('#splash').classList.add('done'),reduce?0:900));
 
 /* routing: hash -> page; the active nav item turns into a dot */
 $$('.page').forEach(p=>$$('.ln',p).forEach((e,i)=>e.style.setProperty('--i',i)));
@@ -337,6 +341,7 @@ const vio=new IntersectionObserver(es=>{es.forEach(e=>vis.set(e.target,e.isInter
   const top=[...vis].filter(([,r])=>r>=.35).sort((a,b)=>b[1]-a[1]).slice(0,4).map(([v])=>v);
   vis.forEach((_,v)=>{if(top.includes(v)&&!reduce)v.play().catch(()=>{});else v.pause()})},{threshold:[0,.35,.7,1]});
 $$('video').forEach(v=>vio.observe(v));
+addEventListener('load',()=>$$('video').forEach(v=>{if(v.preload==='none')v.preload='metadata'}));
 
 /* gallery lightbox */
 const lb=$('#lb');
@@ -399,7 +404,7 @@ if(gl){
   let B1=[0,0,0,0],B2=[0,0,0,0];
   const measure=()=>{B1=box($('header'),8);B2=$('#home').classList.contains('on')?box($('#home .t'),8):[0,0,0,0]};
   function size(){cv.width=innerWidth*dpr;cv.height=innerHeight*dpr;gl.viewport(0,0,cv.width,cv.height);tx=sx=Math.min(.6,.42*innerWidth/innerHeight+.18);measure()}
-  size();addEventListener('resize',size);addEventListener('hashchange',()=>setTimeout(measure,50));document.fonts&&document.fonts.ready.then(measure);
+  size();addEventListener('resize',size);addEventListener('hashchange',()=>setTimeout(measure,50));document.fonts&&(document.fonts.ready.then(measure),document.fonts.addEventListener('loadingdone',measure));
   const t0=performance.now();
   let last=-1e9;
   (function f(now){
