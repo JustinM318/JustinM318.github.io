@@ -21,7 +21,7 @@ body.inner #gl{opacity:.22}
 #splash{position:fixed;inset:0;z-index:20;background:var(--bg);display:flex;align-items:center;justify-content:center;font:200 22px var(--font);color:var(--mute);transition:opacity .9s .5s,visibility 0s 1.4s}
 #splash.done{opacity:0;visibility:hidden}
 @keyframes splash-out{to{opacity:0;visibility:hidden}}
-#splash{animation:splash-out .9s 6s forwards}
+#splash:not(.done){animation:splash-out .9s 6s forwards}
 #splash b{font-weight:200;color:var(--fg);margin-left:.5em}
 
 header{position:fixed;left:72px;top:60px;z-index:5}
